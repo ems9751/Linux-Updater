@@ -1,0 +1,33 @@
+
+#!/bin/bash
+echo -en "Enter IP or Web Address ?"
+read IP
+echo -e "\e[34mScanning...\e[0m"
+nmap $IP
+# software Scan
+    echo "====================================="
+echo "Do you want to do a Software scan?"
+read ans
+    if [ "$ans" = "yes" ] || [ "$ans" = "YES" ]
+     then   
+    echo "====================================="
+    echo -e "\e[34m Software Scanning...\e[0m" 
+    sudo nmap -sV $IP &> nmap/nmap.txt
+    fi
+## OS Scan
+echo "Do you wish to do OS scan?"
+read ans
+    if [ "$ans" = "yes" ] || [ "$ans" = "YES" ]
+      then
+    echo "====================================="
+    echo -e "\e[34m OS Scanning...\e[0m" 
+    sudo nmap -O $IP &> nmap/OSscan.txt
+     fi
+### Metasploit
+echo "Do you want to start Metasploit Console?"
+read ans
+    if [ "$ans" = "yes" ] || [ "$ans" = "Yes" ]
+      then
+    sudo msfconsole
+     fi 
+exit 0
